@@ -15,7 +15,7 @@ export default function Footer() {
                 </div>
                 <div class="flex flex-wrap -m-4 justify-center">
                     <TeamMember name="Shuvo Mohajon" img={shuvo} />
-                    <TeamMember name="Refayet Ullah Siddique" img={refa} />
+                    <TeamMember name="MD.Refayet Ullah Siddique" img={refa} />
                     <TeamMember name="Sanjoy Kumar Dhar" img={sanjoy} />
                 </div>
             </div>
