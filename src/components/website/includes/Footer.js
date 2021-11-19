@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
-import refa from '../images/refa.jpg';
-import shuvo from '../images/shuvo.jpg';
-import sanjoy from '../images/sanjoy.jpg';
-import TeamMember from './TeamMember';
+import refa from '../../../images/sanjoy.jpg';
+import shuvo from '../../../images/shuvo.jpg';
+import sanjoy from '../../../images/sanjoy.jpg';
+import TeamMember from '../TeamMember';
 
 export default function Footer() {
     return (

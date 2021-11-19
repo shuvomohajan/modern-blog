@@ -1,4 +1,4 @@
-import photo from '../images/sanjoy.jpg';
+import photo from '../../../images/sanjoy.jpg';
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
 export default function Post() {
