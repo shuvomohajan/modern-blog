@@ -1,20 +1,20 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 // import Footer from './Footer';
 // import Header from './Header';
-import Register from './UserRegister';
-import SignIn from './UserSignIn';
+// import Register from './UserRegister';
+// import SignIn from './UserSignIn';
 import Dashboard from "./Dashboard";
 import Navbar from "./Navbar";
-import Profile from "./Profile";
+// import Profile from "./Profile";
 
 function App() {
 	return (
 		<div className="bg-gray-100 h-full">
 			<Navbar />
-      {/* <Profile /> */}
+      		{/* <Profile /> */}
       <Dashboard />
-      <Register/>
-      <SignIn/>
+      {/* <Register/>
+      <SignIn/> */}
 		</div>
 	);
 }
