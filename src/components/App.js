@@ -3,8 +3,9 @@
 // import Header from './Header';
 // import Register from './UserRegister';
 // import SignIn from './UserSignIn';
-import Dashboard from "./Dashboard";
+// import Dashboard from "./Dashboard";
 import Navbar from "./Navbar";
+import PostDetails from "./PostDetails";
 // import Profile from "./Profile";
 
 function App() {
@@ -12,9 +13,10 @@ function App() {
 		<div className="bg-gray-100 h-full">
 			<Navbar />
       		{/* <Profile /> */}
-      <Dashboard />
+      {/* <Dashboard /> */}
       {/* <Register/>
       <SignIn/> */}
+	  		<PostDetails />
 		</div>
 	);
 }
