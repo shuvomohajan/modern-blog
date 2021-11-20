@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
+
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import Navbar from "./website/includes/Navbar";
@@ -16,6 +17,7 @@ function App() {
       <Login />
     </div>
   );
+
 }
 
 export default App;
