@@ -1,4 +1,4 @@
-import photo from '../images/sanjoy.jpg';
+import photo from '../../images/sanjoy.jpg';
 
 export default function Profile() {
     return (

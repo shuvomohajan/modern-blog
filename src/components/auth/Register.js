@@ -110,73 +110,72 @@ export default function Register() {
 
   return (
     <div className="py-48 px-48">
-    <div className="py-8 px-8 max-w-sm mx-auto box-border border-2 border-blue-200 bg-white rounded-xl shadow-md space-y-2 ">
-   
-      <div className="font-semibold">
-        <h1>User Registration</h1>
-      </div>
-
-      {/* Calling to the methods */}
-      <div className="text-red-500 text-xs italic">{errorMessage()}</div>
-      <div className="text-green-500 text-xs italic">{successMessage()}</div>
-
-      <form>
-        <div className="w-full bg-grey-lightest text-center space-y-2 ">
-          {/* Labels and inputs for form data */}
-          <label className="block text-grey-darker text-sm font-bold mb-2">
-            Name
-          </label>
-          <input
-            className="appearance-none border border-blue-100 rounded w-full py-2 px-3 text-grey-darker"
-            onChange={handleName}
-            value={name}
-            type="text"
-          />
-
-          <label className="block text-grey-darker text-sm font-bold mb-2">
-            Email
-          </label>
-          <input
-            className="appearance-none border border-blue-100 rounded w-full py-2 px-3 text-grey-darker"
-            onChange={handleEmail}
-            value={email}
-            type="email"
-          />
-          <div className="text-red-500 text-xs italic">{validEmail}</div>
-
-          <label className="block text-grey-darker text-sm font-bold mb-2">
-            Password
-          </label>
-          <input
-            className="appearance-none border border-blue-100 rounded w-full py-2 px-3 text-grey-darker"
-            onChange={handlePassword}
-            value={password}
-            type="password"
-          />
-
-          <label className="block text-grey-darker text-sm font-bold mb-2">
-            Confirm Password
-          </label>
-          <input
-            className="appearance-none border border-blue-100 rounded w-full py-2 px-3 text-grey-darker"
-            onChange={(e) => handleConfirmPassword(e)}
-            value={confirmPassword}
-            type="password"
-          />
-          <div className="text-red-500 text-xs italic">
-            {confirmErrorMessage()}
-          </div>
-
-          <button
-            onClick={handleSubmit}
-            className="px-4 py-1 bg-green-800 border border-red-600 rounded-full text-gray-100 text-sm font-semibold"
-            type="submit"
-          >
-            Submit
-          </button>
+      <div className="py-8 px-8 max-w-sm mx-auto box-border border-2 border-blue-200 bg-white rounded-xl shadow-md space-y-2 ">
+        <div className="font-semibold">
+          <h1>User Registration</h1>
         </div>
-      </form>
-    </div>
+
+        {/* Calling to the methods */}
+        <div className="text-red-500 text-xs italic">{errorMessage()}</div>
+        <div className="text-green-500 text-xs italic">{successMessage()}</div>
+
+        <form>
+          <div className="w-full bg-grey-lightest text-center space-y-2 ">
+            {/* Labels and inputs for form data */}
+            <label className="block text-grey-darker text-sm font-bold mb-2">
+              Name
+            </label>
+            <input
+              className="appearance-none border border-blue-100 rounded w-full py-2 px-3 text-grey-darker"
+              onChange={handleName}
+              value={name}
+              type="text"
+            />
+
+            <label className="block text-grey-darker text-sm font-bold mb-2">
+              Email
+            </label>
+            <input
+              className="appearance-none border border-blue-100 rounded w-full py-2 px-3 text-grey-darker"
+              onChange={handleEmail}
+              value={email}
+              type="email"
+            />
+            <div className="text-red-500 text-xs italic">{validEmail}</div>
+
+            <label className="block text-grey-darker text-sm font-bold mb-2">
+              Password
+            </label>
+            <input
+              className="appearance-none border border-blue-100 rounded w-full py-2 px-3 text-grey-darker"
+              onChange={handlePassword}
+              value={password}
+              type="password"
+            />
+
+            <label className="block text-grey-darker text-sm font-bold mb-2">
+              Confirm Password
+            </label>
+            <input
+              className="appearance-none border border-blue-100 rounded w-full py-2 px-3 text-grey-darker"
+              onChange={(e) => handleConfirmPassword(e)}
+              value={confirmPassword}
+              type="password"
+            />
+            <div className="text-red-500 text-xs italic">
+              {confirmErrorMessage()}
+            </div>
+
+            <button
+              onClick={handleSubmit}
+              className="px-4 py-1 bg-green-800 border border-red-600 rounded-full text-gray-100 text-sm font-semibold"
+              type="submit"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
