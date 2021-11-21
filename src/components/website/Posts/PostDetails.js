@@ -1,6 +1,6 @@
 import photo from '../images/sanjoy.jpg';
-import CommentInput from './CommentInput';
-import Comments from './Comments';
+import CommentInput from '../Comments/CommentInput';
+import Comments from '../Comments/Comments';
 
 export default function PostDetails() {
     return (
