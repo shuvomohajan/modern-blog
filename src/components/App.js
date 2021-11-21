@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-// import Footer from './Footer';
-// import Header from './Header';
 import Register from './UserRegister';
 import SignIn from './UserSignIn';
 import Dashboard from "./Dashboard";
@@ -12,7 +9,7 @@ function App() {
 		<div className="bg-gray-100 h-full">
 			<Navbar />
       {/* <Profile /> */}
-      <Dashboard />
+      {/* <Dashboard /> */}
       <Register/>
       <SignIn/>
 		</div>
