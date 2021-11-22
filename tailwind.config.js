@@ -11,6 +11,8 @@ module.exports = {
         gradientPrimaryEnd: 'rgb(94, 37, 99)',
         gray: colors.trueGray,
         white: colors.white,
+        red: colors.red,
+        green: colors.green,
       },
     },
   },
