@@ -1,4 +1,4 @@
-import photo from '../images/refa.jpg';
+import photo from '../../../images/refa.jpg';
 
 export default function Comment() {
     return (
