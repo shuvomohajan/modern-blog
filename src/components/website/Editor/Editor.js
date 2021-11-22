@@ -20,11 +20,15 @@ export default function Editor() {
 						"redo",
 					],
 				}}
-                className=""
+				className=""
 			/>
 			<div className="mt-4">
-			<button className="bg-basic px-4 py-1 text-white rounded-md font-semibold hover:bg-gradientPrimaryEnd">Post</button>
-                    <button className="ring-1 ring-basic font-semibold px-4 py-1 ml-2 rounded-md text-basic hover:text-gradientPrimaryEnd">Save</button>
+				<button className="bg-basic px-4 py-1 text-white rounded-md font-semibold hover:bg-gradientPrimaryEnd">
+					Post
+				</button>
+				<button className="ring-1 ring-basic font-semibold px-4 py-1 ml-2 rounded-md text-basic hover:text-gradientPrimaryEnd">
+					Save
+				</button>
 			</div>
 		</div>
 	);
