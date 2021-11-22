@@ -19,9 +19,13 @@ export default function CommentInput() {
 					></textarea>
 				</div>
 				<div className="">
-                    <button className="bg-basic px-4 py-1 text-white rounded-md font-semibold hover:bg-gradientPrimaryEnd">Post</button>
-                    <button className="border border-basic px-4 py-1 ml-2 rounded-md text-gradientPrimaryEnd hover:text-red-600">Dismiss</button>
-                </div>
+					<button className="bg-basic px-4 py-1 text-white rounded-md font-semibold hover:bg-gradientPrimaryEnd">
+						Post
+					</button>
+					<button className="border border-basic px-4 py-1 ml-2 rounded-md text-gradientPrimaryEnd hover:text-red-600">
+						Dismiss
+					</button>
+				</div>
 			</div>
 		</div>
 	);
