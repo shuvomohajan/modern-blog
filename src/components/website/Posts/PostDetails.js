@@ -1,6 +1,5 @@
+import { Outlet } from "react-router-dom";
 import photo from "../../../images/sanjoy.jpg";
-import CommentInput from "../Comments/CommentInput";
-import Comments from "../Comments/Comments";
 
 export default function PostDetails() {
 	return (
@@ -134,12 +133,11 @@ export default function PostDetails() {
 			</div>
 
 			{/* Comment section */}
-			<div className="">
+			<div className="" id="comments">
 				<p className="pt-8 pb-10 text-2xl md:text-3xl font-bold text-gray-800">
 					Discussions (10)
 				</p>
-				<CommentInput />
-				<Comments />
+				<Outlet />
 			</div>
 		</div>
 	);

@@ -9,6 +9,7 @@ import Profile from "./website/Profile";
 import { Routes, Route } from "react-router-dom";
 import Editor from "../components/website/Editor/Editor";
 import PostDetails from "../components/website/Posts/PostDetails";
+import Comments from "./website/Comments/Comments";
 
 function App() {
   return (
@@ -20,7 +21,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Register />} />
         <Route path="/editor" element={<Editor />} />
-        <Route path="/post-details/:postId" element={<PostDetails />} />
+        <Route path="/post-details/:postId" element={<PostDetails />}>
+          <Route path="comments" element={<Comments />} />
+        </Route>
       </Routes>
     </div>
   );
