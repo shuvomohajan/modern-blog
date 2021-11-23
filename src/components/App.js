@@ -13,7 +13,7 @@ import Comments from "./website/Comments/Comments";
 
 function App() {
   return (
-    <div className="bg-gray-100 h-full">
+    <div className="bg-gray-100 h-screen max-h-full overflow-scroll">
       <Navbar />
       <Routes>
         <Route path="/" element={<Dashboard />} />
