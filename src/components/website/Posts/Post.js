@@ -1,3 +1,4 @@
+import { HashLink } from "react-router-hash-link";
 import { Link } from "react-router-dom";
 import photo from "../../../images/sanjoy.jpg";
 
@@ -6,18 +7,22 @@ export default function Post() {
 	return (
 		<div className="flex justify-left bg-white rounded-xl md:max-w-2xl mt-8 mx-auto p-6 md:p-8 shadow-lg">
 			<div className="">
-				<img
-					src={photo}
-					alt="propic"
-					className="max-h-12 h-12 w-12 object-cover object-center rounded-full ring-2 ring-basic"
-					style={{ width: "3rem", minWidth: "3rem" }}
-				/>
+				<Link to="/profile/:userId">
+					<img
+						src={photo}
+						alt="propic"
+						className="max-h-12 h-12 w-12 object-cover object-center rounded-full ring-2 ring-basic"
+						style={{ width: "3rem", minWidth: "3rem" }}
+					/>
+				</Link>
 			</div>
 			<div className="ml-4">
 				<div className="">
-					<Link to="/post-details/:postId">
+					<Link to="/profile/:userId">
 						<p className="text-gray-600 font-semibold">Sanjoy Kumar Dhar</p>
 						<p className="text-gray-500 text-sm">Nov 19, 2021 (1 day ago)</p>
+					</Link>
+					<Link to="/post-details/:postId">
 						<p className="text-3xl font-bold text-gray-700 mt-4 hover:text-basic cursor-pointer">
 							You MUST store this Javascript Operator Index
 						</p>
@@ -70,7 +75,9 @@ export default function Post() {
 								d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
 							/>
 						</svg>
-						<span className="pt-1 pl-1 text-gray-500">3 Comments</span>
+						<HashLink smooth to="/post-details/:postId/comments#comments">
+                            <span className="pt-1 pl-1 text-gray-500">3 Comments</span>
+                        </HashLink>
 					</div>
 				</div>
 			</div>

@@ -1,6 +1,6 @@
+import { Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import photo from "../../../images/sanjoy.jpg";
-import CommentInput from "../Comments/CommentInput";
-import Comments from "../Comments/Comments";
 
 export default function PostDetails() {
 	return (
@@ -8,15 +8,19 @@ export default function PostDetails() {
 			{/* Head section */}
 			<div className="">
 				<div className="flex gap-4">
-					<img
-						src={photo}
-						alt="propic"
-						className="max-h-10 h-10 w-10 object-cover object-center rounded-full ring-2 ring-basic"
-						style={{ width: "2.5rem", minWidth: "2.5rem" }}
-					/>
+					<Link to="/profile/:userId">
+						<img
+							src={photo}
+							alt="propic"
+							className="max-h-10 h-10 w-10 object-cover object-center rounded-full ring-2 ring-basic"
+							style={{ width: "2.5rem", minWidth: "2.5rem" }}
+						/>
+					</Link>
 					<div className="">
-						<p className="text-gray-600 font-semibold">Sanjoy Kumar Dhar</p>
-						<p className="text-gray-500 text-sm">Nov 19, 2021 (1 day ago)</p>
+						<Link to="/profile/:userId">
+							<p className="text-gray-600 font-semibold">Sanjoy Kumar Dhar</p>
+							<p className="text-gray-500 text-sm">Nov 19, 2021 (1 day ago)</p>
+						</Link>
 					</div>
 				</div>
 				<div className="">
@@ -134,12 +138,11 @@ export default function PostDetails() {
 			</div>
 
 			{/* Comment section */}
-			<div className="">
+			<div className="" id="comments">
 				<p className="pt-8 pb-10 text-2xl md:text-3xl font-bold text-gray-800">
 					Discussions (10)
 				</p>
-				<CommentInput />
-				<Comments />
+				<Outlet />
 			</div>
 		</div>
 	);
