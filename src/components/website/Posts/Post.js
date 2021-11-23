@@ -1,3 +1,4 @@
+import { HashLink } from "react-router-hash-link";
 import { Link } from "react-router-dom";
 import photo from "../../../images/sanjoy.jpg";
 
@@ -70,7 +71,9 @@ export default function Post() {
 								d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
 							/>
 						</svg>
-						<span className="pt-1 pl-1 text-gray-500">3 Comments</span>
+						<HashLink smooth to="/post-details/:postId/comments#comments">
+                            <span className="pt-1 pl-1 text-gray-500">3 Comments</span>
+                        </HashLink>
 					</div>
 				</div>
 			</div>
