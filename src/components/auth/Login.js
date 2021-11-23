@@ -10,8 +10,8 @@ const [passwordShown,setPasswordShown]=useState(false);
       setPasswordShown(!passwordShown);
    }
   return (
-   <div className="flex items-center justify-center  h-screen bg-gray-100">
-   <div className="flex  absolute w-3/4 h-4/5 mb-8 max-mx-48  rounded-lg shadow-2xl   bg-white ">
+   <div className="flex items-center justify-center  h-screen bg-white">
+   <div className="flex flex-row absolute w-3/4 h-4/5 mb-8 max-mx-48  rounded-lg shadow-2xl   bg-white ">
 
             <div className="px-12 py-32 max-w-2/5  xl:w-2/5 h-7/12 space-y-4">
 

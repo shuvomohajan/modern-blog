@@ -119,7 +119,7 @@ export default function Register() {
   
   return (
     <div className="flex items-center justify-center  h-screen bg-white">
-     <div className="flex absolute w-3/4 h-4/5 mb-8 max-mx-48  rounded-lg shadow-2xl   bg-white ">
+     <div className="flex lg:flex-row absolute w-3/4 h-4/5 mb-8 max-mx-48  rounded-lg shadow-2xl   bg-white ">
     
      <div className="max-w-3/5 lg:w-3/5 sm:max-h-full hidden xl:block ">
           <img src={SignUp} alt="SignUpPage" className="w-3/5 h-full absolute "/>
