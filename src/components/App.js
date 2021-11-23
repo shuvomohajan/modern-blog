@@ -2,12 +2,12 @@
 
 import Login from "./auth/Login";
 import Register from "./auth/Register";
-// import Navbar from "./website/includes/Navbar";
-// import Dashboard from "./website/Dashboard";
-// import Profile from "./website/Profile";
-// import { Routes, Route } from "react-router-dom";
-// import Editor from "../components/website/Editor/Editor";
-// import PostDetails from "../components/website/Posts/PostDetails";
+import Navbar from "./website/includes/Navbar";
+import Dashboard from "./website/Dashboard";
+import Profile from "./website/Profile";
+import { Routes, Route } from "react-router-dom";
+import Editor from "../components/website/Editor/Editor";
+import PostDetails from "../components/website/Posts/PostDetails";
 
 function App() {
   return (
