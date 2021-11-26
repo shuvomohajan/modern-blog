@@ -1,69 +1,142 @@
-import {useState} from "react";
-import LoginImg from "../../images/LoginPage Image.png";
-import PassEye from "../../images/PassEye.png";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import LoginImg from "../../images/login.png";
+// import PassEye from "../../images/PassEye.png";
 export default function SignIn() {
+	const [passwordShown, setPasswordShown] = useState(false);
 
-const [passwordShown,setPasswordShown]=useState(false);
+	const shw_hidePassword = (e) => {
+		e.preventDefault();
+		setPasswordShown(!passwordShown);
+	};
 
-   const shw_hidePassword=(e)=>{
-     e.preventDefault();
-      setPasswordShown(!passwordShown);
-   }
-  return (
-   <div className="flex items-center justify-center  h-screen bg-white">
-   <div className="flex flex-row absolute w-3/4 h-4/5 mb-8 max-mx-48  rounded-lg shadow-2xl   bg-white ">
+	return (
+		<div className="flex justify-center h-screen max-h-full min-h-full w-full md:max-w-full mx-auto bg-white rounded-xl shadow-lg">
+			<div className="flex flex-col justify-center md:pr-24 md:pl-16 lg:pr-32">
+				<div className="mb-8">
+					<h1 className="text-4xl font-semibold text-gradientPrimaryStart">
+						Welcome{" "}
+					</h1>
+					<p className="text-sm font-semibold text-gray-400">
+						Please Enter your Email & Password.
+					</p>
+				</div>
 
-            <div className="px-12 py-32 max-w-2/5  xl:w-2/5 h-7/12 space-y-4">
+				<form classname="">
+					<div className="flex flex-col gap-5 justify-center">
+						<div className="relative flex items-center text-gray-400 focus-within:text-gray-600">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="h-6 w-6 absolute pointer-events-none"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+								/>
+							</svg>
+							<input
+								type="text"
+								className="pr-3 pl-10 py-2 font-semibold border-b-2 border-gray-400 placeholder-gray-500 text-black focus:outline-none"
+								placeholder="Email"
+							/>
+						</div>
 
-               <h1 className="text-3xl sm:text-4xl  px-2 fond-bold text-blue-900">Welcome </h1>
-               <p className="text-semibold px-2 italic">Please Enter your Email & Password.</p>
+						<div className="relative flex items-center text-gray-400 focus-within:text-gray-600">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="h-6 w-6 absolute pointer-events-none"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+								/>
+							</svg>
 
-                                          <form>
-                                          <div className="space-y-6 w-full lg:w-3/4 mx-4 md:mx-12 ">
-                                                   <div className="flex border-b-2 border-gray-700">   
-                                                                     <svg className="svg-icon w-8" viewBox="0 0 20 20">
-                                                                        <path d="M17.388,4.751H2.613c-0.213,0-0.389,0.175-0.389,0.389v9.72c0,0.216,0.175,0.389,0.389,0.389h14.775c0.214,0,0.389-0.173,0.389-0.389v-9.72C17.776,4.926,17.602,4.751,17.388,4.751 M16.448,5.53L10,11.984L3.552,5.53H16.448zM3.002,6.081l3.921,3.925l-3.921,3.925V6.081z M3.56,14.471l3.914-3.916l2.253,2.253c0.153,0.153,0.395,0.153,0.548,0l2.253-2.253l3.913,3.916H3.56z M16.999,13.931l-3.921-3.925l3.921-3.925V13.931z" ></path>
-                                                                     </svg>
-                                                                     <input type="text" className="w-full h-12 px-2 border-0 focus:outline-none font-semibold " placeholder="Email" />
-                                                   </div>
+							<input
+								className="pr-3 pl-10 py-2 font-semibold border-b-2 border-gray-400 placeholder-gray-500 text-black focus:outline-none"
+								type={passwordShown ? "text" : "password"}
+								placeholder="Password"
+							/>
 
-                                          <div className="flex border-b-2 border-gray-700 ">
-                                          <svg className="svg-icon w-8 h-12" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M18 10.5C19.6569 10.5 21 11.8431 21 13.5V19.5C21 21.1569 19.6569 22.5 18 22.5H6C4.34315 22.5 3 21.1569 3 19.5V13.5C3 11.8431 4.34315 10.5 6 10.5V7.5C6 4.18629 8.68629 1.5 12 1.5C15.3137 1.5 18 4.18629 18 7.5V10.5ZM12 3.5C14.2091 3.5 16 5.29086 16 7.5V10.5H8V7.5C8 5.29086 9.79086 3.5 12 3.5ZM18 12.5H6C5.44772 12.5 5 12.9477 5 13.5V19.5C5 20.0523 5.44772 20.5 6 20.5H18C18.5523 20.5 19 20.0523 19 19.5V13.5C19 12.9477 18.5523 12.5 18 12.5Z"
-                                                                              fill="currentColor"/>
-                                                            </svg>
+							{!passwordShown ? (
+								<div className="absolute right-0" onClick={shw_hidePassword}>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										class="h-6 w-6"
+										fill="none"
+										viewBox="0 0 24 24"
+										stroke="currentColor"
+									>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											stroke-width="2"
+											d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+										/>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											stroke-width="2"
+											d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+										/>
+									</svg>
+								</div>
+							) : (
+								<div className="absolute right-0" onClick={shw_hidePassword}>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										class="h-6 w-6"
+										fill="none"
+										viewBox="0 0 24 24"
+										stroke="currentColor"
+									>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											stroke-width="2"
+											d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
+										/>
+									</svg>
+								</div>
+							)}
+						</div>
 
-                                          
-                                          <input className="w-4/5 h-12 px-1 border-0 focus:outline-none font-semibold" type={passwordShown ? "text": "password"} placeholder="Password"/>
-                                          <label onClick={shw_hidePassword}>
-                                                   <img src={PassEye} alt='eye' className="w-6 h-10 pt-3 ml-4 cursor-pointer"/>
-                                                </label>
-                                             </div>
-                                             
+						<button
+							className="text-center text-lg w-full bg-basic rounded-md text-white py-3 font-medium hover:bg-gradientPrimaryEnd"
+							type="submit"
+						>
+							Login
+						</button>
+					</div>
+				</form>
+				<div className="flex items-center mt-3">
+					<h1 className="text-gray-500 font-medium">Don't Have an Account?</h1>
+					<Link
+						to="/registration"
+						className="font-medium text-gradientPrimaryEnd pl-4"
+					>
+						SignUp
+					</Link>
+				</div>
+			</div>
 
-                                          <button
-                                             className="text-center w-full bg-blue-900 rounded-md text-white py-3 font-medium "
-                                             type="submit"
-                                          >
-                                             Login
-                                          </button>
-                                          </div>
-                                          </form>
-                                          <div className="flex items-center mt-3">
-                                          <h1 className="font-medium px-16 sm:px-28 lg:px-16 xl:px-12 2xl:px-28">Don't Have an Account?</h1>
-                                          </div>
-                                             <a href="#!" class="font-medium px-28 sm:px-44 lg:px-28 2xl:px-40 text-blue-900 ml-1">SignUp</a>
-
-            </div>
-
-
-
-
-               <div className="max-w-3/5 lg:w-3/5 sm:max-h-full hidden lg:block ">
-                  <img src={LoginImg} alt="LoginPage" className="w-3/5 h-full absolute "/>
-               </div>
-   </div>
- </div>
-  );
-};
-
+			<div className="hidden h-32 md:h-auto md:w-3/4 md:block lg:block">
+				<img
+					src={LoginImg}
+					alt="LoginPage"
+					className="object-contain md:object-scale-down h-full w-full"
+				/>
+			</div>
+		</div>
+	);
+}
