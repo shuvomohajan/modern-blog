@@ -9,14 +9,32 @@ import Editor from "../components/website/Editor/Editor";
 import PostDetails from "../components/website/Posts/PostDetails";
 import WithNav from "./website/includes/WithNav";
 import { AuthProvider } from "../context/AuthContext";
+import {
+	PublicRoute,
+	PrivateRoute,
+} from "../components/website/includes/PublicRoute";
 
 function App() {
 	return (
 		<div className="bg-gray-100 h-screen max-h-full overflow-scroll">
 			<AuthProvider>
 				<Routes>
-					<Route path="/login" element={<Login />} />
-					<Route path="/registration" element={<Register />} />
+					<Route
+						path="/login"
+						element={
+							<PublicRoute>
+								<Login />
+							</PublicRoute>
+						}
+					/>
+					<Route
+						path="/registration"
+						element={
+							<PublicRoute>
+								<Register />
+							</PublicRoute>
+						}
+					/>
 					<Route
 						path="/"
 						element={
@@ -28,25 +46,31 @@ function App() {
 					<Route
 						path="/profile/:userId"
 						element={
-							<WithNav>
-								<Profile />
-							</WithNav>
+							<PrivateRoute>
+								<WithNav>
+									<Profile />
+								</WithNav>
+							</PrivateRoute>
 						}
 					/>
 					<Route
 						path="/editor"
 						element={
-							<WithNav>
-								<Editor />
-							</WithNav>
+							<PrivateRoute>
+								<WithNav>
+									<Editor />
+								</WithNav>
+							</PrivateRoute>
 						}
 					/>
 					<Route
 						path="/post-details/:postId"
 						element={
-							<WithNav>
-								<PostDetails />
-							</WithNav>
+							<PrivateRoute>
+								<WithNav>
+									<PostDetails />
+								</WithNav>
+							</PrivateRoute>
 						}
 					/>
 				</Routes>

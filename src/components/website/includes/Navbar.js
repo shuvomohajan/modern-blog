@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
+import {MenuIcon} from "../../Icons";
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
 export default function Navbar() {
@@ -65,18 +66,7 @@ export default function Navbar() {
 						{/* For mobile devices menu icon */}
 						<div className="md:hidden flex items-center">
 							<button className="outline-none mobile-menu-button">
-								<svg
-									class="w-6 h-6 text-gray-500"
-									x-show="!showMenu"
-									fill="none"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="2"
-									viewBox="0 0 24 24"
-									stroke="currentColor"
-								>
-									<path d="M4 6h16M4 12h16M4 18h16"></path>
-								</svg>
+								<MenuIcon />
 							</button>
 						</div>
 						{/* For mobile devices menu icon finish */}

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import SignUp from "../../images/register.png";
-import { Eye, EyeClose, Lock, Email, User } from "../Icons";
+import { EyeIcon, EyeCloseIcon, LockIcon, EmailIcon, UserIcon } from "../Icons";
 
 export default function Register() {
 	const [passwordShown, setPasswordShown] = useState(false);
@@ -31,10 +31,10 @@ export default function Register() {
 					</p>
 				</div>
 
-				<form classname="">
+				<form className="">
 					<div className="flex flex-col gap-5 justify-center">
 						<div className="relative flex items-center text-gray-400 focus-within:text-gray-600">
-							{User()}
+							<UserIcon />
 							<input
 								type="text"
 								className="w-full pr-3 pl-10 py-2 font-semibold border-b-2 border-gray-400 placeholder-gray-500 text-black focus:outline-none"
@@ -43,7 +43,7 @@ export default function Register() {
 						</div>
 
 						<div className="relative flex items-center text-gray-400 focus-within:text-gray-600">
-							{Email()}
+							<EmailIcon />
 							<input
 								type="text"
 								className="w-full pr-3 pl-10 py-2 font-semibold border-b-2 border-gray-400 placeholder-gray-500 text-black focus:outline-none"
@@ -52,7 +52,7 @@ export default function Register() {
 						</div>
 
 						<div className="relative flex items-center text-gray-400 focus-within:text-gray-600">
-							{Lock()}
+							<LockIcon />
 
 							<input
 								className="w-full pr-3 pl-10 py-2 font-semibold border-b-2 border-gray-400 placeholder-gray-500 text-black focus:outline-none"
@@ -62,16 +62,16 @@ export default function Register() {
 
 							{!passwordShown ? (
 								<div className="absolute right-0" onClick={shw_hidePassword}>
-									{EyeClose()}
+									<EyeCloseIcon />
 								</div>
 							) : (
 								<div className="absolute right-0" onClick={shw_hidePassword}>
-									{Eye()}
+									<EyeIcon />
 								</div>
 							)}
 						</div>
 						<div className="relative flex items-center text-gray-400 focus-within:text-gray-600">
-							{Lock()}
+							<LockIcon />
 
 							<input
 								className="w-full pr-3 pl-10 py-2 font-semibold border-b-2 border-gray-400 placeholder-gray-500 text-black focus:outline-none"
@@ -81,11 +81,11 @@ export default function Register() {
 
 							{!passwordShown ? (
 								<div className="absolute right-0" onClick={shw_hidePassword}>
-									{EyeClose()}
+									<EyeCloseIcon />
 								</div>
 							) : (
 								<div className="absolute right-0" onClick={shw_hidePassword}>
-									{Eye()}
+									<EyeIcon />
 								</div>
 							)}
 						</div>

@@ -2,12 +2,12 @@ import { useState } from "react";
 import {useAuth} from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 import LoginImg from "../../images/login.png";
-import { Eye, EyeClose, Lock, Email } from "../Icons";
+import { EyeIcon, EyeCloseIcon, LockIcon, EmailIcon } from "../Icons";
 
 export default function SignIn() {
 	const [passwordShown, setPasswordShown] = useState(false);
-	const [email, setEmail] = useState(null);
-	const [password, setPassword] = useState(null);
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 
 	const {loading, login} = useAuth();
 
@@ -39,10 +39,10 @@ export default function SignIn() {
 					</p>
 				</div>
 
-				<form classname="" onSubmit={handleSubmit}>
+				<form className="" onSubmit={handleSubmit}>
 					<div className="flex flex-col gap-5 justify-center">
 						<div className="relative flex items-center text-gray-400 focus-within:text-gray-600">
-							{Email()}
+							<EmailIcon />
 
 							<input
 								type="text"
@@ -54,7 +54,7 @@ export default function SignIn() {
 						</div>
 
 						<div className="relative flex items-center text-gray-400 focus-within:text-gray-600">
-							{Lock()}
+							<LockIcon />
 
 							<input
 								className="pr-3 pl-10 py-2 font-semibold border-b-2 border-gray-400 placeholder-gray-500 text-black focus:outline-none"
@@ -66,11 +66,11 @@ export default function SignIn() {
 
 							{!passwordShown ? (
 								<div className="absolute right-0" onClick={shw_hidePassword}>
-									{EyeClose()}
+									<EyeCloseIcon />
 								</div>
 							) : (
 								<div className="absolute right-0" onClick={shw_hidePassword}>
-									{Eye()}
+									<EyeIcon />
 								</div>
 							)}
 						</div>
