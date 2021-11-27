@@ -1,7 +1,10 @@
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext";
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
 export default function Navbar() {
+	const { token, logout } = useAuth();
+
 	return (
 		<header>
 			<nav className="bg-white shadow-lg">
@@ -21,7 +24,7 @@ export default function Navbar() {
 						<div className="md:flex items-center space-x-3">
 							<div className="hidden md:flex items-center space-x-1">
 								{/* nav items */}
-								<NavLink 
+								<NavLink
 									to="/"
 									className="py-4 px-2 text-gray-500 border-b-4 border-basic font-semibold"
 								>
@@ -39,12 +42,23 @@ export default function Navbar() {
 								>
 									Profile
 								</NavLink>
-								<NavLink
-									to="/login"
-									className="py-4 px-2 text-gray-500 font-semibold hover:text-basic transition duration-300"
-								>
-									Login/Signup
-								</NavLink>
+
+								{!token ? (
+									<NavLink
+										to="/login"
+										className="py-4 px-2 text-gray-500 font-semibold hover:text-basic transition duration-300"
+									>
+										Login/Signup
+									</NavLink>
+								) : (
+									<div
+										to="/login"
+										className="py-4 px-2 text-gray-500 font-semibold hover:text-basic transition duration-300 cursor-pointer"
+										onClick={logout}
+									>
+										Logout
+									</div>
+								)}
 							</div>
 						</div>
 
