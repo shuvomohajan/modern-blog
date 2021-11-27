@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {useAuth} from "../../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 import LoginImg from "../../images/login.png";
 import { EyeIcon, EyeCloseIcon, LockIcon, EmailIcon } from "../Icons";
@@ -9,12 +9,11 @@ export default function SignIn() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
-	const {loading, login} = useAuth();
+	const { loading, login } = useAuth();
 
 	async function handleSubmit(e) {
 		e.preventDefault();
 
-		
 		try {
 			await login(email, password);
 		} catch (err) {

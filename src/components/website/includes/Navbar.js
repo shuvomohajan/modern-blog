@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
-import {MenuIcon} from "../../Icons";
+import { MenuIcon } from "../../Icons";
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
 export default function Navbar() {

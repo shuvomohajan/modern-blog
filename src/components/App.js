@@ -9,10 +9,7 @@ import Editor from "../components/website/Editor/Editor";
 import PostDetails from "../components/website/Posts/PostDetails";
 import WithNav from "./website/includes/WithNav";
 import { AuthProvider } from "../context/AuthContext";
-import {
-	PublicRoute,
-	PrivateRoute,
-} from "../components/website/includes/PublicRoute";
+import { PublicRoute, PrivateRoute } from "./website/includes/Routes";
 
 function App() {
 	return (
