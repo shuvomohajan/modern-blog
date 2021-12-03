@@ -1,15 +1,36 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import SignUp from "../../images/register.png";
-import { EyeIcon, EyeCloseIcon, LockIcon, EmailIcon, UserIcon } from "../Icons";
+import { useAuth } from "../../context/AuthContext";
+import { LockIcon, EmailIcon, UserIcon } from "../Icons";
+import TextInput from "../TextInput";
+import Form from "../Form";
 
 export default function Register() {
-	const [passwordShown, setPasswordShown] = useState(false);
+	const [name, setName] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [confirmPassword, setConfirmPassword] = useState("");
 
-	const shw_hidePassword = (e) => {
+	const { signUp } = useAuth();
+
+	async function handleSubmit(e) {
 		e.preventDefault();
-		setPasswordShown(!passwordShown);
-	};
+
+		if (password === confirmPassword) {
+			const values = {
+				name,
+				email,
+				password,
+				confirmPassword,
+			};
+			try {
+				await signUp(values);
+			} catch (err) {
+				console.log(err);
+			}
+		}
+	}
 
 	return (
 		<div className="flex justify-center h-screen max-h-full min-h-full pr-12 pl-12 md:pr-0 md:pl-0 w-full md:max-w-full mx-auto bg-white rounded-xl shadow-lg">
@@ -31,73 +52,46 @@ export default function Register() {
 					</p>
 				</div>
 
-				<form className="">
-					<div className="flex flex-col gap-5 justify-center">
-						<div className="relative flex items-center text-gray-400 focus-within:text-gray-600">
-							<UserIcon />
-							<input
-								type="text"
-								className="w-full pr-3 pl-10 py-2 font-semibold border-b-2 border-gray-400 placeholder-gray-500 text-black focus:outline-none"
-								placeholder="Name"
-							/>
-						</div>
+				<Form onSubmit={handleSubmit}>
+					<TextInput
+						icon={<UserIcon />}
+						type="text"
+						placeholder="Name"
+						value={name}
+						onChange={(e) => setName(e.target.value)}
+					/>
 
-						<div className="relative flex items-center text-gray-400 focus-within:text-gray-600">
-							<EmailIcon />
-							<input
-								type="text"
-								className="w-full pr-3 pl-10 py-2 font-semibold border-b-2 border-gray-400 placeholder-gray-500 text-black focus:outline-none"
-								placeholder="Email"
-							/>
-						</div>
+					<TextInput
+						icon={<EmailIcon />}
+						type="text"
+						placeholder="Email"
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
+					/>
 
-						<div className="relative flex items-center text-gray-400 focus-within:text-gray-600">
-							<LockIcon />
+					<TextInput
+						icon={<LockIcon />}
+						type="password"
+						placeholder="Password"
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
+					/>
+					<TextInput
+						icon={<LockIcon />}
+						type="password"
+						placeholder="Confirm Password"
+						value={confirmPassword}
+						onChange={(e) => setConfirmPassword(e.target.value)}
+					/>
 
-							<input
-								className="w-full pr-3 pl-10 py-2 font-semibold border-b-2 border-gray-400 placeholder-gray-500 text-black focus:outline-none"
-								type={passwordShown ? "text" : "password"}
-								placeholder="Password"
-							/>
-
-							{!passwordShown ? (
-								<div className="absolute right-0" onClick={shw_hidePassword}>
-									<EyeCloseIcon />
-								</div>
-							) : (
-								<div className="absolute right-0" onClick={shw_hidePassword}>
-									<EyeIcon />
-								</div>
-							)}
-						</div>
-						<div className="relative flex items-center text-gray-400 focus-within:text-gray-600">
-							<LockIcon />
-
-							<input
-								className="w-full pr-3 pl-10 py-2 font-semibold border-b-2 border-gray-400 placeholder-gray-500 text-black focus:outline-none"
-								type={passwordShown ? "text" : "password"}
-								placeholder="Confirm Password"
-							/>
-
-							{!passwordShown ? (
-								<div className="absolute right-0" onClick={shw_hidePassword}>
-									<EyeCloseIcon />
-								</div>
-							) : (
-								<div className="absolute right-0" onClick={shw_hidePassword}>
-									<EyeIcon />
-								</div>
-							)}
-						</div>
-
-						<button
-							className="text-center text-lg w-full bg-basic rounded-md text-white py-3 font-medium hover:bg-gradientPrimaryEnd"
-							type="submit"
-						>
-							SignUp
-						</button>
-					</div>
-				</form>
+					<button
+						className="text-center text-lg w-full bg-basic rounded-md text-white py-3 font-medium hover:bg-gradientPrimaryEnd"
+						type="submit"
+					>
+						SignUp
+					</button>
+				</Form>
+				
 				<div className="flex items-center mt-3">
 					<h1 className="text-gray-500 font-medium">
 						Already a ModernBlogger?
