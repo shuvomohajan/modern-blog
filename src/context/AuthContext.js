@@ -9,10 +9,12 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
+	const LOGIN_URL = "http://modern-blog-backend.test/api/login";
+	const REGISTER_URL = "http://modern-blog-backend.test/api/register";
+
 	const [error, setError] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [token, setToken] = useState("");
-	const url = "http://modern-blog-backend.test/api/login";
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -20,10 +22,28 @@ export function AuthProvider({ children }) {
 		setToken(localToken);
 	}, [token, setToken]);
 
+	// SignUp
+	function signUp(value) {
+		axios
+			.post(REGISTER_URL, {
+				name: value.name,
+				email: value.email,
+				password: value.password,
+				password_confirmation: value.confirmPassword,
+			})
+			.then((res) => {
+				login(value.email, value.password);
+				console.log(res.data.message);
+			})
+			.catch((err) => {
+				setError(err);
+			});
+	}
+
 	// login
 	function login(email, password) {
 		axios
-			.post(url, {
+			.post(LOGIN_URL, {
 				email: email,
 				password: password,
 			})
@@ -55,6 +75,7 @@ export function AuthProvider({ children }) {
 	const value = {
 		token,
 		error,
+		signUp,
 		login,
 		logout,
 	};
