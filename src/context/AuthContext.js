@@ -4,6 +4,12 @@ import { useNavigate } from "react-router-dom";
 
 const AuthContext = React.createContext();
 
+const INITIAL_STATE = {
+	name: "",
+	email: "",
+	id: "",
+};
+
 export function useAuth() {
 	return useContext(AuthContext);
 }
@@ -11,16 +17,43 @@ export function useAuth() {
 export function AuthProvider({ children }) {
 	const LOGIN_URL = "http://modern-blog-backend.test/api/login";
 	const REGISTER_URL = "http://modern-blog-backend.test/api/register";
+	const LOGOUT_URL = "http://modern-blog-backend.test/api/logout";
+	const PROFILE_URL = "http://modern-blog-backend.test/api/profile";
 
 	const [error, setError] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [token, setToken] = useState("");
+	const [userState, setUserState] = useState(INITIAL_STATE);
+
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		const localToken = window.localStorage.getItem("token");
-		setToken(localToken);
-	}, [token, setToken]);
+		if (token !== "") {
+			axios
+				.get(PROFILE_URL, {
+					headers: {
+						Authorization: "Bearer " + token,
+					},
+				})
+				.then((res) => {
+					const data = res.data.data;
+					setUserState({
+						name: data.name,
+						email: data.email,
+						id: data.id,
+					});
+
+					window.localStorage.setItem("token", token);
+				})
+				.catch((err) => {
+					setError(err);
+					console.log(err);
+					localStorage.removeItem("token");
+				});
+		}
+		const getToken = window.localStorage.getItem("token");
+		setToken(getToken ? getToken : "");
+	}, [token]);
 
 	// SignUp
 	function signUp(value) {
@@ -51,7 +84,6 @@ export function AuthProvider({ children }) {
 				setError(false);
 				setLoading(false);
 				setToken(res.data.token);
-				window.localStorage.setItem("token", res.data.token);
 
 				navigate("/", {
 					replace: true,
@@ -64,16 +96,29 @@ export function AuthProvider({ children }) {
 
 	// logout
 	function logout() {
-		localStorage.removeItem("token");
-		setToken("");
+		axios
+			.post(
+				LOGOUT_URL,
+				{},
+				{
+					headers: { Authorization: "Bearer " + token },
+				}
+			)
+			.then((res) => {
+				console.log(res.data.message);
+				localStorage.removeItem("token");
+				setToken("");
 
-		navigate("/", {
-			replace: true,
-		});
+				navigate("/", {
+					replace: true,
+				});
+			})
+			.catch((err) => console.log(err));
 	}
 
 	const value = {
 		token,
+		userState,
 		error,
 		signUp,
 		login,
