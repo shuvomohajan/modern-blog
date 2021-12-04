@@ -27,19 +27,25 @@ export default function Navbar() {
 								{/* nav items */}
 								<NavLink
 									to="/"
-									className="py-4 px-2 text-gray-500 border-b-4 border-basic font-semibold"
+									className= {
+										({isActive}) => "py-4 px-2 text-gray-500 font-semibold" + (!isActive ? "" : " border-basic border-b-4")
+									}
 								>
 									Home
 								</NavLink>
 								<NavLink
 									to="/editor"
-									className="py-4 px-2 text-gray-500 font-semibold hover:text-basic transition duration-300"
+									className= {
+										({isActive}) => "py-4 px-2 text-gray-500 font-semibold" + (!isActive ? "" : " border-basic border-b-4")
+									}
 								>
 									Create Blog
 								</NavLink>
 								<NavLink
 									to="/profile/:userId"
-									className="py-4 px-2 text-gray-500 font-semibold hover:text-basic transition duration-300"
+									className= {
+										({isActive}) => "py-4 px-2 text-gray-500 font-semibold" + (!isActive ? "" : " border-basic border-b-4")
+									}
 								>
 									Profile
 								</NavLink>

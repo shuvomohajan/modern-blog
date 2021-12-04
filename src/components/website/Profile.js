@@ -1,6 +1,9 @@
 import photo from "../../images/sanjoy.jpg";
+import {useAuth} from "../../context/AuthContext";
 
 export default function Profile() {
+	const { userState } = useAuth();
+
 	return (
 		<div className="flex justify-center max-w-5xl mt-8 mx-auto p-8 bg-white rounded-xl shadow-lg">
 			<div className="flex-none">
@@ -13,6 +16,9 @@ export default function Profile() {
 			<div className="pl-12 md:pl-16">
 				<div className="">
 					<p className="text-2xl font-semibold">Sanjoy Kumar Dhar</p>
+					<p className="text-2xl font-semibold">{userState.name}</p>
+					<p className="text-2xl font-semibold">{userState.email}</p>
+					<p className="text-2xl font-semibold">{userState.id}</p>
 					<p className="text-gray-500 font-medium text-xs mb-4">
 						Studied BSC in Computer Science and Engineering
 					</p>
