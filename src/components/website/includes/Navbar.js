@@ -42,6 +42,14 @@ export default function Navbar() {
 									Create Blog
 								</NavLink>
 								<NavLink
+									to="/posts"
+									className= {
+										({isActive}) => "py-4 px-2 text-gray-500 font-semibold" + (!isActive ? "" : " border-basic border-b-4")
+									}
+								>
+									My Blogs
+								</NavLink>
+								<NavLink
 									to="/profile/:userId"
 									className= {
 										({isActive}) => "py-4 px-2 text-gray-500 font-semibold" + (!isActive ? "" : " border-basic border-b-4")

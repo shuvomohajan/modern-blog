@@ -10,6 +10,7 @@ import WithNav from "./website/includes/WithNav";
 import { AuthProvider } from "../context/AuthContext";
 import { PublicRoute, PrivateRoute } from "./website/includes/Routes";
 import Editor from "../components/website/Editor/Editor";
+import MyPosts from "../components/website/Posts/MyPosts";
 
 function App() {
 	return (
@@ -56,6 +57,16 @@ function App() {
 							<PrivateRoute>
 								<WithNav>
 									<Editor />
+								</WithNav>
+							</PrivateRoute>
+						}
+					/>
+					<Route
+						path="/posts"
+						element={
+							<PrivateRoute>
+								<WithNav>
+									<MyPosts />
 								</WithNav>
 							</PrivateRoute>
 						}

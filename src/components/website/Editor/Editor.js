@@ -10,6 +10,7 @@ export default function Testing() {
 	const POST_URL = "http://modern-blog-backend.test/api/posts";
 
 	const [title, setTitle] = useState("");
+	const [status, setStatus] = useState(1);
 	const [editorState, setEditorState] = useState(() =>
 		EditorState.createEmpty()
 	);
@@ -33,6 +34,7 @@ export default function Testing() {
 						convertToRaw(editorState.getCurrentContent())
 					),
 					category_id: 1,
+					status: status,
 				},
 				{
 					headers: { Authorization: "Bearer " + token },
@@ -93,7 +95,11 @@ export default function Testing() {
 					>
 						Post
 					</button>
-					<button className="ring-1 ring-basic font-semibold px-4 py-1 ml-2 rounded-md text-basic hover:text-gradientPrimaryEnd">
+					<button
+						type="submit"
+						onClick={() => setStatus(0)}
+						className="ring-1 ring-basic font-semibold px-4 py-1 ml-2 rounded-md text-basic hover:text-gradientPrimaryEnd"
+					>
 						Save
 					</button>
 				</div>

@@ -5,6 +5,7 @@ import { convertFromRaw } from "draft-js";
 import { convertToHTML } from "draft-convert";
 
 const INITIAL_STATE = {
+	id: "",
 	author: "",
 	createdAt: "",
 	title: "",
@@ -27,8 +28,9 @@ export default function usePost(postId) {
 			})
 			.then((response) => {
 				const data = response.data.data;
-				console.log(data);
+
 				setPost({
+					id: data.id,
 					author: data.post_writer_name,
 					createdAt: data.created_at,
 					title: data.title,
