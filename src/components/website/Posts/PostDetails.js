@@ -1,55 +1,68 @@
 import { Link } from "react-router-dom";
-// import { Outlet } from "react-router-dom";
 import photo from "../../../images/sanjoy.jpg";
 import Comments from "../Comments/Comments";
+import { useParams } from "react-router-dom";
+import usePost from "../../../Hooks/usePost";
+import DOMPurify from "dompurify";
 
 export default function PostDetails() {
+	const params = useParams();
+	const { loading, error, post } = usePost(params.postId);
+
+	const createMarkup = (html) => {
+		return {
+			__html: DOMPurify.sanitize(html),
+		};
+	};
+
 	return (
 		<div className=" bg-white rounded-xl md:max-w-3xl mt-8 mx-auto p-6 md:p-8 shadow-lg">
-			{/* Head section */}
-			<div className="">
-				<div className="flex gap-4">
-					<Link to="/profile/:userId">
-						<img
-							src={photo}
-							alt="propic"
-							className="max-h-10 h-10 w-10 object-cover object-center rounded-full ring-2 ring-basic"
-							style={{ width: "2.5rem", minWidth: "2.5rem" }}
-						/>
-					</Link>
+			{!loading && !error && post && (
+				<>
+					{/* Head section */}
 					<div className="">
-						<Link to="/profile/:userId">
-							<p className="text-gray-600 font-semibold">Sanjoy Kumar Dhar</p>
-							<p className="text-gray-500 text-sm">Nov 19, 2021 (1 day ago)</p>
-						</Link>
+						<div className="flex gap-4">
+							<Link to="/profile/:userId">
+								<img
+									src={photo}
+									alt="propic"
+									className="max-h-10 h-10 w-10 object-cover object-center rounded-full ring-2 ring-basic"
+									style={{ width: "2.5rem", minWidth: "2.5rem" }}
+								/>
+							</Link>
+							<div className="">
+								<Link to="/profile/:userId">
+									<p className="text-gray-600 font-semibold">{post.author}</p>
+									<p className="text-gray-500 text-sm">{post.createdAt}</p>
+								</Link>
+							</div>
+						</div>
+						<div className="">
+							<p className="text-4xl font-bold text-gray-700 mt-6">{post.title}</p>
+							<div className="pt-4 pb-6 border-b-2">
+								<span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 cursor-pointer hover:text-white hover:bg-gray-700 transition duration-300">
+									#javascript
+								</span>
+								<span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 cursor-pointer hover:text-white hover:bg-gray-700 transition duration-300">
+									#webdev
+								</span>
+								<span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 cursor-pointer hover:text-white hover:bg-gray-700 transition duration-300">
+									#beginners
+								</span>
+								<span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 cursor-pointer hover:text-white hover:bg-gray-700 transition duration-300">
+									#codenewbie
+								</span>
+							</div>
+						</div>
 					</div>
-				</div>
-				<div className="">
-					<p className="text-4xl font-bold text-gray-700 mt-6 hover:text-basic cursor-pointer">
-						You MUST store this Javascript Operator Index
-					</p>
-					<div className="pt-4 pb-6 border-b-2">
-						<span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 cursor-pointer hover:text-white hover:bg-gray-700 transition duration-300">
-							#javascript
-						</span>
-						<span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 cursor-pointer hover:text-white hover:bg-gray-700 transition duration-300">
-							#webdev
-						</span>
-						<span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 cursor-pointer hover:text-white hover:bg-gray-700 transition duration-300">
-							#beginners
-						</span>
-						<span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 cursor-pointer hover:text-white hover:bg-gray-700 transition duration-300">
-							#codenewbie
-						</span>
-					</div>
-				</div>
-			</div>
 
-			{/* Main Post section */}
-			<div className="pt-10 pb-6 border-b-2">
-				{/* Post section */}
-				<div className="">
-					<p className="text-gray-700 text-justify">
+					{/* Main Post section */}
+					<div className="pt-10 pb-6 border-b-2">
+						{/* Post section */}
+						<div
+							dangerouslySetInnerHTML={createMarkup(post.content)}
+						>
+							{/* <p className="text-gray-700 text-justify">
 						Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis
 						itaque provident eligendi, delectus maiores nam omnis porro
 						necessitatibus inventore harum?
@@ -113,38 +126,44 @@ export default function PostDetails() {
 						numquam iusto consequatur, in autem, ex quibusdam culpa et nostrum
 						consectetur, porro veniam ea obcaecati optio? Quas, excepturi vero
 						quos blanditiis deserunt distinctio?
-					</p>
-				</div>
+					</p> */}
+						</div>
 
-				{/* Reaction section*/}
-				<div className="flex gap-3 pt-4">
-					<div className="flex whitespace-nowrap cursor-pointer hover:bg-gray-100 px-3 py-1 rounded-lg">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							class="h-7 stroke-current text-gray-500"
-							fill="none"
-							viewBox="0 0 24 24"
-							stroke="currentColor"
-						>
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-							/>
-						</svg>
-						<span className="pt-1 pl-1 pr-10 text-gray-500">34 Reactions</span>
+						{/* Reaction section*/}
+						<div className="flex gap-3 pt-4">
+							<div className="flex whitespace-nowrap cursor-pointer hover:bg-gray-100 px-3 py-1 rounded-lg">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									class="h-7 stroke-current text-gray-500"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+									/>
+								</svg>
+								<span className="pt-1 pl-1 pr-10 text-gray-500">
+									34 Reactions
+								</span>
+							</div>
+						</div>
 					</div>
-				</div>
-			</div>
 
-			{/* Comment section */}
-			<div className="" id="comments">
-				<p className="pt-8 pb-10 text-2xl md:text-3xl font-bold text-gray-800">
-					Discussions (10)
-				</p>
-				<Comments />
-			</div>
+					{/* Comment section */}
+					<div className="" id="comments">
+						<p className="pt-8 pb-10 text-2xl md:text-3xl font-bold text-gray-800">
+							Discussions { post.comments.length }
+						</p>
+						{
+							(post.comments.length > 0) && <Comments />
+						}
+					</div>
+				</>
+			)}
 		</div>
 	);
 }

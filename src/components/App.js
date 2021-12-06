@@ -5,11 +5,12 @@ import Register from "./auth/Register";
 import Dashboard from "./website/Dashboard";
 import Profile from "./website/Profile";
 import { Routes, Route } from "react-router-dom";
-import Editor from "../components/website/Editor/Editor";
+// import Editor from "../components/website/Editor/Editor";
 import PostDetails from "../components/website/Posts/PostDetails";
 import WithNav from "./website/includes/WithNav";
 import { AuthProvider } from "../context/AuthContext";
 import { PublicRoute, PrivateRoute } from "./website/includes/Routes";
+import Testing from "./website/Editor/Testing";
 
 function App() {
 	return (
@@ -55,7 +56,7 @@ function App() {
 						element={
 							<PrivateRoute>
 								<WithNav>
-									<Editor />
+									<Testing />
 								</WithNav>
 							</PrivateRoute>
 						}
