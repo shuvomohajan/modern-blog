@@ -1,47 +1,103 @@
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { useState } from "react";
-import ReactHtmlParser from "react-html-parser";
+import React, { useState } from "react";
+import axios from "axios";
+import { useAuth } from "../../../context/AuthContext";
+import { convertToRaw, EditorState } from "draft-js";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
-export default function Editor() {
-	const [data, setData] = useState("");
+export default function Testing() {
+	const { token } = useAuth();
+	const POST_URL = "http://modern-blog-backend.test/api/posts";
 
-	function handleChange(e, editor) {
-		const editorData = editor.getData();
-		setData(editorData);
+	const [title, setTitle] = useState("");
+	const [editorState, setEditorState] = useState(() =>
+		EditorState.createEmpty()
+	);
+
+	const editorLabels = {
+		// BlockType
+		"components.controls.blocktype.h1": "Heading",
+		"components.controls.blocktype.h2": "Sub Heading",
+		"components.controls.blocktype.normal": "Normal",
+	};
+
+	function handleSubmit(e) {
+		e.preventDefault();
+
+		axios
+			.post(
+				POST_URL,
+				{
+					title: title,
+					content: JSON.stringify(
+						convertToRaw(editorState.getCurrentContent())
+					),
+					category_id: 1,
+				},
+				{
+					headers: { Authorization: "Bearer " + token },
+				}
+			)
+			.then((res) => {
+				console.log(res.data.message);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	}
 
 	return (
-		<div className="bg-white rounded-xl md:max-w-3xl mt-8 mx-auto p-6 md:p-8 shadow-lg">
-			<CKEditor
-				editor={ClassicEditor}
-				// config={{
-				// 	toolbar: [
-				// 		"heading",
-				// 		"|",
-				// 		"bold",
-				// 		"italic",
-				// 		"blockQuote",
-				// 		"numberedList",
-				// 		"bulletedList",
-				// 		"|",
-				// 		"undo",
-				// 		"redo",
-				// 	],
-				// }}
-				data={data}
-				onChange={handleChange}
-				className="p-10"
-			/>
-			<div className="">{data ? <div>{ReactHtmlParser(data)}</div> : ""}</div>
-			<div className="mt-4">
-				<button className="bg-basic px-4 py-1 text-white rounded-md font-semibold hover:bg-gradientPrimaryEnd">
-					Post
-				</button>
-				<button className="ring-1 ring-basic font-semibold px-4 py-1 ml-2 rounded-md text-basic hover:text-gradientPrimaryEnd">
-					Save
-				</button>
-			</div>
+		<div className="bg-white rounded-xl md:max-w-3xl mt-8 mx-auto p-6 md:p-8 shadow-lg flex flex-col gap-4">
+			<form onSubmit={handleSubmit}>
+				<div className="">
+					<label htmlFor="" className="text-xl font-semibold text-gray-600">
+						Title
+					</label>
+					<input
+						type="text"
+						value={title}
+						onChange={(e) => setTitle(e.target.value)}
+						className="shawdow appearance-none border rounded w-full py-2 px-3 mb-4 text-gray-600 focus:ring-2 focus:ring-gray-400 focus:outline-none"
+					/>
+				</div>
+				<div className="">
+					<label htmlFor="" className="text-xl font-semibold text-gray-600">
+						Main Content
+					</label>
+					<Editor
+						editorState={editorState}
+						wrapperClassName="wrapper-class"
+						editorClassName="ring-2 ring-gray-300 px-4"
+						toolbarClassName="ring-2 ring-gray-300 text-gray-700"
+						onEditorStateChange={setEditorState}
+						localization={{ locale: "en", translations: editorLabels }}
+						toolbar={{
+							options: ["inline", "list", "blockType", "history"],
+							inline: {
+								inDropdown: false,
+								options: ["bold", "italic", "underline"],
+							},
+							blockType: {
+								inDropdown: false,
+								options: ["Normal", "H1", "H2"],
+							},
+							list: { inDropdown: false, options: ["ordered", "unordered"] },
+							history: { inDropdown: false },
+						}}
+					/>
+				</div>
+				<div className="mt-4">
+					<button
+						type="submit"
+						className="bg-basic px-4 py-1 text-white rounded-md font-semibold hover:bg-gradientPrimaryEnd"
+					>
+						Post
+					</button>
+					<button className="ring-1 ring-basic font-semibold px-4 py-1 ml-2 rounded-md text-basic hover:text-gradientPrimaryEnd">
+						Save
+					</button>
+				</div>
+			</form>
 		</div>
 	);
 }
