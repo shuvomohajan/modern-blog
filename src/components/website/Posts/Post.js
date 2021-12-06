@@ -4,7 +4,7 @@ import photo from "../../../images/sanjoy.jpg";
 import { CommentIcon, ReactionIcon } from "../../Icons";
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
-export default function Post() {
+export default function Post({id, title, author, createdAt}) {
 	return (
 		<div className="flex justify-left bg-white rounded-xl md:max-w-2xl mt-8 mx-auto p-6 md:p-8 shadow-lg">
 			<div className="">
@@ -20,12 +20,12 @@ export default function Post() {
 			<div className="ml-4">
 				<div className="">
 					<Link to="/profile/:userId">
-						<p className="text-gray-600 font-semibold">Sanjoy Kumar Dhar</p>
-						<p className="text-gray-500 text-sm">Nov 19, 2021 (1 day ago)</p>
+						<p className="text-gray-600 font-semibold">{author}</p>
+						<p className="text-gray-500 text-sm">{createdAt}</p>
 					</Link>
-					<Link to="/post-details/:postId">
+					<Link to={`/post-details/${id}`}>
 						<p className="text-3xl font-bold text-gray-700 mt-4 hover:text-basic cursor-pointer">
-							You MUST store this Javascript Operator Index
+							{title}
 						</p>
 					</Link>
 					<div className="pt-4 pb-2">

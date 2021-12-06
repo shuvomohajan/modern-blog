@@ -61,7 +61,7 @@ export default function SignIn() {
 				</Form>
 				
 				<div className="flex items-center mt-3">
-					<h1 className="text-gray-500 font-medium">Don't Have an Account?</h1>
+					<p className="text-gray-500 font-medium">Don't Have an Account?</p>
 					<Link
 						to="/registration"
 						className="font-medium text-gradientPrimaryEnd pl-4"
